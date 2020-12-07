@@ -1,0 +1,35 @@
+<div class="sidebar">
+    <div class="column side_col">
+        <div>
+            <h5>List Progress </h5>
+        </div>
+        <div>
+            <div class="progress">
+            
+            <div class="progress-bar" role="progressbar" aria-valuenow="70"
+            aria-valuemin="0" aria-valuemax="100" [ngStyle]="{'width': childValue + '%'}">
+                    {{childValue}}%
+                   
+                </div>
+              </div>
+        </div>
+    </div>
+    <div class="column side_col">
+        <div>
+            <h5>Female Users</h5>
+        </div>
+        <div>
+            <h5>{{femaleValue}}</h5>
+        </div>
+    </div>
+    <div class="column side_col">
+        <div>
+            <h5>Male Users</h5>
+        </div>
+        <div>
+            <h5>{{maleValue}}</h5>
+            
+        </div>
+    </div>
+    
+</div>

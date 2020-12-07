@@ -1,0 +1,129 @@
+<!-------------Modal design -->
+<ng-template #content let-modal>
+    <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title">
+          Add  User
+        </h4>
+        <button type="button"  class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+
+            <span aria-hidden="true">
+                ×
+            </span>
+        </button>
+    </div>
+    <form novalidate (ngSubmit)="onSubmit();modal.close()" #f="ngForm">
+         
+    <div class="modal-body">
+            <div class="form-group row">
+                <label class="col-md-6" for="fullName">
+                    Full Name
+                </label>
+                <div class="input-group col-md-6">
+                    <input type="text"  name="fullName" #fullName="ngModel" required  [(ngModel)]="user.fullName"  required >
+
+                    <!-- <div class="form-control-feedback"
+			     *ngIf="fullName.errors && (fullName.dirty || fullName.touched)">
+				<p *ngIf="fullName.errors.required">FullName name is required</p>
+			</div> -->
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-md-6">Dob</label>
+                <div class="form-group col-md-6">
+                    <div class="input-group">
+                        <input class="form-control" placeholder="yyyy-mm-dd" required name="dob" [(ngModel)]="user.dob" ngbDatepicker
+                            #d="ngbDatepicker" [markDisabled]="isDisabled" >
+                        <div class="input-group-append">
+                            <button class="btn btn-outline-secondary calendar" (click)="d.toggle()"
+                                type="button"></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="form-group row">
+                <label for="fullName" class="col-md-6">
+                    Languages
+                </label>
+                <div class="input-group col-md-6">
+
+                    <select name="lang"  [(ngModel)]="user.lang"  required >
+                        <option value="{{lang}}"  *ngFor="let lang of language; " >{{lang}}</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group row ">
+                <label for="fullName" class="col-md-6">
+                    Gender
+                </label>
+                <div class="input-group col-md-6"  >
+                  
+                    <input type="radio" id="male" name="gender" [(ngModel)]="user.gender"  value="Male">
+                    <label for="male">Male</label><br>
+                    <input type="radio" id="female" name="gender" [(ngModel)]="user.gender"  value="Female">
+                    <label for="female">Female</label><br> 
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label for="fullName" class="col-md-6">
+                    About
+                </label>
+                <div class="input-group col-md-6">
+                    <textarea name="about" required  [(ngModel)]="user.about"></textarea>
+
+                </div>
+            </div>
+
+
+        
+    </div>
+    <div class="modal-footer">
+        <button type="submit" [disabled]="!f.form.valid"  class="btn btn-outline-dark">
+
+         <!-- (click)="modal.close('Save click')"> -->
+            Save
+        </button>
+    </div>
+</form>
+</ng-template>
+
+
+<!---modal design end -->
+
+<button class="btn btn-primary" (click)="open(content)"> Add new </button>
+
+<div class="row">
+    <div class="col-md-9 column">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Birth Date</th>
+                    <th scope="col">Gender</th>
+                    <th scope="col">Lanuage</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let user of allUsers; index as i">
+              <th scope="row">{{ i + 1 }}</th>
+              <td>{{ user.fullName }}
+              </td> 
+              <td> {{user.dob|date:'MMM d, y, h:mm:ss a'}}</td>
+              <td>{{ user.gender  }}</td>
+              <td>{{ user.lang  }}</td>
+            </tr>
+            </tbody>
+        </table>
+        
+    </div>
+    <div class="col-md-3 column">
+        <app-sidebar [childValue] = "progressBar" [maleValue] = "maleUsers" [femaleValue] = "femaleUsers"  ></app-sidebar>
+    </div>
+</div>
+
+
+
+

@@ -1,0 +1,14 @@
+.side_col{
+    min-height: 200px;
+    /* position: absolute; */
+}
+.sidebar{
+    background-color: #8080802e;
+    border: 2px solid;
+}
+.column .side_col h5{
+text-align: center;
+}
+h5{
+    text-align: center;
+    }
